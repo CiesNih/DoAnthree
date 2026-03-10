@@ -1,14 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { getAllCandidates } from './services/candidateService';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [candidates, setCandidates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getAllCandidates()
+      .then(res => setCandidates(res.data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
 
   return (
-    <h1>Quản lý Ứng viên</h1>
-  )
+    <div>
+      <h1>Danh sách ứng viên từ API</h1>
+      <ul>
+        {candidates.map(item => (
+          <li key={item.id}>{item.fullName}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
