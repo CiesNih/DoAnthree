@@ -1,0 +1,93 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+/* Logo */
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2d56a1; /* Màu xanh đặc trưng */
+}
+
+/* Menu điều hướng */
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link span {
+  font-size: 8px;
+  color: #999;
+}
+
+.nav-link:hover {
+  color: #2d56a1;
+}
+
+/* Buttons */
+.header-auth {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-register {
+  color: #2d56a1;
+  border: 1px solid #2d56a1;
+  padding: 6px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-login {
+  background-color: #2d56a1;
+  color: white;
+  padding: 7px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-employer {
+  background-color: #333;
+  color: white;
+  padding: 7px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
