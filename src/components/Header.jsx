@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import '../styles/Header.css';
 
 export default function Header() {
+  // 1. Khai báo State để kiểm soát việc ẩn hiện menu
+  const [showJobMenu, setShowJobMenu] = useState(false);
+  const [showCompanyMenu, setShowCompanyMenu] = useState(false);
+
+  // 2. Dữ liệu menu (Để code sạch hơn, không nên viết thẳng vào HTML)
+  const jobCategories = {
+    nganhNghe: ["Tài Chính/Ngân Hàng", "Kế Toán/Kiểm Toán", "Hành Chính/Văn Phòng", "Kinh Doanh/Bán Hàng", "Marketing/Quảng Cáo", "Xây dựng/Kiến Trúc", "Công Nghệ Thông Tin", "Nhân Sự"],
+    diaDiem: ["Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ", "Bình Dương", "Hải Phòng", "Đồng Nai", "Quảng Ninh"],
+    nhuCau: ["Tuyển Gấp", "Nổi Bật", "Lao động phổ thông", "Không cần bằng cấp", "Online tại nhà", "Part-time", "Thời vụ", "Remote"]
+  };
+//2. Dữ liệu công ty
+  const companyCategories = [
+    "Ngân hàng", "Bảo hiểm", "Phần mềm", "Xây dựng", 
+    "Bất động sản", "Thương mại điện tử", "Sản xuất", "Dịch vụ"
+  ];
+
   return (
     <header className="header">
       <div className="header-container">
@@ -9,17 +26,63 @@ export default function Header() {
         <div className="logo-section">
           <Link to="/" className="logo-link">
             <span className="logo-icon">💼</span>
-            <span className="logo-text">JobsGO</span>
+            <span className="logo-text">Tìm Jobs cùng tôi</span>
           </Link>
         </div>
 
-        {/* Menu chính */}
+        {/* Navigation Menu */}
         <nav className="nav-menu">
-          <div className="nav-item">
+          {}
+          <div 
+            className="nav-item"
+            onMouseEnter={() => setShowJobMenu(true)} // Rà chuột vào thì hiện
+            onMouseLeave={() => setShowJobMenu(false)} // Rời chuột thì ẩn
+          >
             <Link to="/jobs" className="nav-link">Việc làm <span>▼</span></Link>
+            
+            {/* Mega Menu xuất hiện khi hover */}
+            {showJobMenu && (
+              <div className="mega-menu">
+                <div className="mega-menu-container">
+                  <div className="mega-col">
+                    <h4>Việc theo ngành nghề</h4>
+                    {jobCategories.nganhNghe.map(item => (
+                      <Link key={item} to={`/jobs/${item}`}>{item}</Link>
+                    ))}
+                  </div>
+                  <div className="mega-col">
+                    <h4>Việc theo địa điểm</h4>
+                    {jobCategories.diaDiem.map(item => (
+                      <Link key={item} to={`/location/${item}`}>{item}</Link>
+                    ))}
+                  </div>
+                  <div className="mega-col">
+                    <h4>Việc theo nhu cầu</h4>
+                    {jobCategories.nhuCau.map(item => (
+                      <Link key={item} to={`/type/${item}`}>{item}</Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="nav-item">
+
+          <div className="nav-item" onMouseEnter={() => setShowCompanyMenu(true)} onMouseLeave={() => setShowCompanyMenu(false)}>
             <Link to="/companies" className="nav-link">Công ty <span>▼</span></Link>
+            {showCompanyMenu && (
+              <div className="mega-menu mini-menu"> {/* Thêm class mini-menu nếu muốn nó nhỏ hơn */}
+                <div className="mega-menu-container single-col">
+                  <div className="mega-col">
+                    <h4>Top ngành nghề phổ biến</h4>
+                    <div className="company-grid">
+                       {companyCategories.map(item => (
+                         <Link key={item} to={`/companies/${item}`}>{item}</Link>
+                       ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="nav-item">
             <Link to="/candidates" className="nav-link">CV/Hồ sơ <span>▼</span></Link>
@@ -42,3 +105,4 @@ export default function Header() {
     </header>
   );
 }
+

@@ -1,7 +1,7 @@
 .header {
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
-  height: 70px;
+  height: 85px;
   display: flex;
   align-items: center;
   position: sticky;
@@ -57,37 +57,130 @@
   color: #2d56a1;
 }
 
-/* Buttons */
+
 .header-auth {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
+  height: 100%; 
 }
 
-.btn-register {
-  color: #2d56a1;
-  border: 1px solid #2d56a1;
-  padding: 6px 15px;
+
+.btn-register, .btn-login, .btn-employer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px; 
+  padding: 0 16px; 
   border-radius: 4px;
-  text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
 }
+
+
+.btn-register {
+  color: #ffffff !important; 
+  border: 1px solid #2d56a1;
+  background-color: #ffffff;
+}
+
+.btn-register:hover {
+  background-color: #f0f4f8;
+}
+
 
 .btn-login {
   background-color: #2d56a1;
-  color: white;
-  padding: 7px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
+  color: #ffffff !important;
+  border: 1px solid #2d56a1;
+}
+
+.btn-login:hover {
+  background-color: #244682;
 }
 
 .btn-employer {
-  background-color: #333;
-  color: white;
-  padding: 7px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 13px;
+  background-color: #333333;
+  color: #ffffff !important;
+  font-size: 12px;
   font-weight: bold;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+
+.mega-menu {
+  position: absolute;
+  top: 80%; 
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 850px;
+  background: white;
+  border-top: 3px solid #2d56a1;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  padding: 25px;
+  z-index: 1001; 
+}
+
+.mega-menu-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: left; 
+}
+
+.mega-col h4 {
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.mega-col a {
+  display: block;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 0;
+  transition: all 0.2s;
+}
+
+.mega-col a:hover {
+  color: #2d56a1;
+  padding-left: 5px;
+}
+
+
+/* Layout cho menu Công ty (chia 2 cột nhỏ bên trong) */
+.company-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Chia làm 2 cột danh sách */
+  gap: 10px 40px;
+}
+
+/* Mega menu bản thu nhỏ cho các mục ít nội dung */
+.mini-menu {
+  width: 400px !important; /* Thu hẹp chiều rộng */
+}
+
+.single-col {
+  grid-template-columns: 1fr !important;
+}
+
+/* Giúp menu con luôn nổi lên trên banner */
+.mega-menu {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
