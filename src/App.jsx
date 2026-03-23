@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import CandidateListPage from './pages/CandidateListPage';
 import TestAPI from './pages/TestAPI';
+// Import thêm trang chi tiết nếu bạn định làm (tùy chọn)
+// import JobDetail from './pages/JobDetail'; 
+
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
@@ -12,11 +15,17 @@ function App() {
     <Router>
       <Header />
       <div className="app-container">
-        <Sidebar />
+        {}
+        <Sidebar /> 
+        
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/candidates" element={<CandidateListPage />} />
+            {}
+            <Route path="/" element={<Home />} />          
+            {}
+            <Route path="/candidates" element={<CandidateListPage />} />           
+            {}
+            {}
             <Route path="/test-api" element={<TestAPI />} />
           </Routes>
         </main>
