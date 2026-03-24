@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import '../styles/Header.css';
 
 export default function Header() {
-  // 1. Khai báo State để kiểm soát việc ẩn hiện menu
+  // Trạng thái để điều khiển hiển thị menu
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [showCompanyMenu, setShowCompanyMenu] = useState(false);
 
-  // 2. Dữ liệu menu (Để code sạch hơn, không nên viết thẳng vào HTML)
+  // Dữ liệu cho menu việc làm
   const jobCategories = {
     nganhNghe: ["Tài Chính/Ngân Hàng", "Kế Toán/Kiểm Toán", "Hành Chính/Văn Phòng", "Kinh Doanh/Bán Hàng", "Marketing/Quảng Cáo", "Xây dựng/Kiến Trúc", "Công Nghệ Thông Tin", "Nhân Sự"],
     diaDiem: ["Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ", "Bình Dương", "Hải Phòng", "Đồng Nai", "Quảng Ninh"],
@@ -35,12 +35,12 @@ export default function Header() {
           {}
           <div 
             className="nav-item"
-            onMouseEnter={() => setShowJobMenu(true)} // Rà chuột vào thì hiện
-            onMouseLeave={() => setShowJobMenu(false)} // Rời chuột thì ẩn
+            onMouseEnter={() => setShowJobMenu(true)} 
+            onMouseLeave={() => setShowJobMenu(false)} 
           >
             <Link to="/jobs" className="nav-link">Việc làm <span>▼</span></Link>
             
-            {/* Mega Menu xuất hiện khi hover */}
+            {}
             {showJobMenu && (
               <div className="mega-menu">
                 <div className="mega-menu-container">

@@ -15,5 +15,5 @@ export const getJobById = (id) => axiosInstance.get(`${API_URL}/${id}`);
 export const createJob = (data) => axiosInstance.post(API_URL, data);
 export const deleteJob = (id) => axiosInstance.delete(`${API_URL}/${id}`);
 
-// Bạn có thể thêm các API liên quan đến Công ty ở đây nếu cần
+/// ===== Additional APIs =====
 export const getJobsByCompany = (companyId) => axiosInstance.get(`${API_URL}/ByCompany/${companyId}`);

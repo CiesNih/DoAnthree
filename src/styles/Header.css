@@ -29,7 +29,7 @@
 .logo-text {
   font-size: 22px;
   font-weight: bold;
-  color: #2d56a1; /* Màu xanh đặc trưng */
+  color: #2d56a1; 
 }
 
 /* Menu điều hướng */
@@ -159,23 +159,21 @@
 }
 
 
-/* Layout cho menu Công ty (chia 2 cột nhỏ bên trong) */
 .company-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Chia làm 2 cột danh sách */
+  grid-template-columns: 1fr 1fr; 
   gap: 10px 40px;
 }
 
-/* Mega menu bản thu nhỏ cho các mục ít nội dung */
+
 .mini-menu {
-  width: 400px !important; /* Thu hẹp chiều rộng */
+  width: 400px !important;
 }
 
 .single-col {
   grid-template-columns: 1fr !important;
 }
 
-/* Giúp menu con luôn nổi lên trên banner */
 .mega-menu {
   animation: fadeIn 0.2s ease-out;
 }

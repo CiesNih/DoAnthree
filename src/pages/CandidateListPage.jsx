@@ -100,7 +100,7 @@ export default function CandidateListPage() {
       {/* Empty State */}
       {!loading && !error && filteredCandidates.length === 0 && (
         <div className="empty-state">
-          <p>😕 Không tìm thấy ứng viên nào</p>
+          <p> Không tìm thấy ứng viên nào</p>
           {searchTerm && (
             <button onClick={() => setSearchTerm('')} className="btn-reset">
               Xóa tìm kiếm
