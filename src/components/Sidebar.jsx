@@ -4,10 +4,10 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-section">
-        <h3> Thống Kê</h3>
+        <h3> Phản hồi</h3>
         <ul>
-          <li> Tổng Quan</li>
-          <li> Ứng Viên</li>
+          <li> Công việc hot</li>
+          <li> Bàn luận</li>
           <li> Việc Làm</li>
           <li> Hồ Sơ</li>
         </ul>
