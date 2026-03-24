@@ -5,7 +5,7 @@ import TestAPI from './pages/TestAPI';
 // Trang chi tiết:
 import JobDetail from './pages/JobDetail';
 
-
+import ScrollToTop from './components/ScrollToTop';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
@@ -14,6 +14,7 @@ import './styles/App.css';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <div className="app-container">
         {}
