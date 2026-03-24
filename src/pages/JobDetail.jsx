@@ -83,7 +83,7 @@ export default function JobDetail() {
         {}
         <div className="detail-card location-card">
           <h3>🗺️ Địa điểm làm việc: <span className="text-blue">{job.diaDiem}</span></h3>
-          <p className="specific-address">Dữ liệu thật từ `diaDiem` API Swagger.</p>
+          <p className="specific-address">Ghi chú: Công việc được đưa lên bởi Job Tin</p>
         </div>
 
         {}
@@ -93,13 +93,13 @@ export default function JobDetail() {
           <h3>Mô Tả Công Việc:</h3>
           {}
           <p className="job-description-text">
-            {job.moTa || 'Dữ liệu mô tả công việc đang được cập nhật từ hệ thống...'}
+            {job.moTa || 'Công việc sẽ được cập nhật chi tiết từ hệ thống...'}
           </p>
 
           <h3>Yêu Cầu Ứng Viên:</h3>
           {}
           <p className="job-description-text">
-            {job.yeuCau || 'Dữ liệu yêu cầu ứng viên đang được cập nhật từ hệ thống...'}
+            {job.yeuCau || 'Yêu cầu chi tiết: Kinh nghiệm 1 năm, tốt nghiệp cao đẳng trở lên. Ưu tiên ứng viên có kỹ năng giao tiếp tốt.'}
           </p>
 
           <h3>Quyền Lợi:</h3>
