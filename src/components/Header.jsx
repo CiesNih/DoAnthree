@@ -70,7 +70,7 @@ export default function Header() {
           <div className="nav-item" onMouseEnter={() => setShowCompanyMenu(true)} onMouseLeave={() => setShowCompanyMenu(false)}>
             <Link to="/companies" className="nav-link">Công ty <span>▼</span></Link>
             {showCompanyMenu && (
-              <div className="mega-menu mini-menu"> {/* Thêm class mini-menu nếu muốn nó nhỏ hơn */}
+              <div className="mega-menu mini-menu"> {}
                 <div className="mega-menu-container single-col">
                   <div className="mega-col">
                     <h4>Top ngành nghề phổ biến</h4>

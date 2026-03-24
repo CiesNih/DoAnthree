@@ -102,29 +102,29 @@ export default function Home() {
                 />
               </div>
               <button type="submit" className="btn-search">
-                🔍 TÌM VIỆC
+                 TÌM VIỆC
               </button>
             </div>
 
             {/* Filters */}
             <div className="filters">
               <button type="button" className="filter-btn">
-                <span>🏢</span> Ngành nghề
+                <span></span> Ngành nghề
               </button>
               <button type="button" className="filter-btn">
-                <span>📋</span> Loại hình
+                <span></span> Loại hình
               </button>
               <button type="button" className="filter-btn">
-                <span>💰</span> Mức lương
+                <span></span> Mức lương
               </button>
               <button type="button" className="filter-btn">
-                <span>👤</span> Chức vụ
+                <span></span> Chức vụ
               </button>
               <button type="button" className="filter-btn">
-                <span>⭐</span> Kinh nghiệm
+                <span></span> Kinh nghiệm
               </button>
               <button type="button" className="filter-btn">
-                <span>🎓</span> Học vấn
+                <span></span> Học vấn
               </button>
             </div>
           </form>
