@@ -73,6 +73,14 @@ export default function Home() {
 
   const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
 
+  const featuredEmployers = [
+    { name: 'Công Ty Cổ Phần Clever Group', jobs: 1 },
+    { name: 'Công Ty Cổ phần Giao Hàng Tiết Kiệm', jobs: 1 },
+    { name: 'Công Ty Cổ Phần Zinca Việt Nam', jobs: 5 },
+    { name: 'Công Ty Cổ Phần VINHOMES', jobs: 17 },
+    { name: 'Công Ty Cổ Phần BCONS PS', jobs: 4 }
+  ];
+
   return (
     <div className="home-container">
       {/* Hero Section */}
@@ -273,6 +281,24 @@ export default function Home() {
             </div>
             <Sidebar />
           </aside>
+        </div>
+      </section>
+
+      {/* Featured employers */}
+      <section className="featured-employers">
+        <div className="fe-container">
+          <h3>Nhà Tuyển Dụng Tiêu Biểu</h3>
+          <div className="employers-list">
+            {featuredEmployers.map((e) => (
+              <div key={e.name} className="employer-card">
+                <div className="employer-logo">
+                  <span>{e.name.charAt(0)}</span>
+                </div>
+                <div className="employer-name">{e.name}</div>
+                <div className="employer-badge">{e.jobs} việc làm đang tuyển</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
