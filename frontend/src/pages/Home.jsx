@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     filterJobs();
-  }, [keyword, location, jobs]);
+  }, [jobs]);
 
   const fetchJobs = async () => {
     try {
@@ -35,19 +35,21 @@ export default function Home() {
     }
   };
 
-  const filterJobs = () => {
+ const filterJobs = (kw = keyword, loc = location) => {
     let filtered = jobs;
 
-    if (keyword) {
+    if (kw) {
+      const k = kw.toLowerCase();
       filtered = filtered.filter(job =>
-        job.tieuDe?.toLowerCase().includes(keyword.toLowerCase()) ||
-        job.tenCongTy?.toLowerCase().includes(keyword.toLowerCase())
+        (job.tieuDe || '').toLowerCase().includes(k) ||
+        (job.tenCongTy || '').toLowerCase().includes(k)
       );
     }
 
-    if (location) {
+    if (loc) {
+      const l = loc.toLowerCase();
       filtered = filtered.filter(job =>
-        job.diaDiem?.toLowerCase().includes(location.toLowerCase())
+        (job.diaDiem || '').toLowerCase().includes(l)
       );
     }
 
