@@ -30,11 +30,6 @@ export default function AuthModal({ mode = 'login', onClose = () => {} }) {
 
         <h3 className="auth-title">{tab === 'login' ? 'Đăng nhập hệ thống' : 'Tạo tài khoản'}</h3>
 
-        <div className="auth-socials">
-          <button className="social-btn fb">f</button>
-          <button className="social-btn gg">G</button>
-          <button className="social-btn zalo">Z</button>
-        </div>
 
         <div className="auth-or">Hoặc đăng nhập bằng tài khoản</div>
 

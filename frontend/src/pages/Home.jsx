@@ -131,28 +131,6 @@ export default function Home() {
                  TÌM VIỆC
               </button>
             </div>
-
-            {/* Filters */}
-            <div className="filters">
-              <button type="button" className="filter-btn">
-                <span></span> Ngành nghề
-              </button>
-              <button type="button" className="filter-btn">
-                <span></span> Loại hình
-              </button>
-              <button type="button" className="filter-btn">
-                <span></span> Mức lương
-              </button>
-              <button type="button" className="filter-btn">
-                <span></span> Chức vụ
-              </button>
-              <button type="button" className="filter-btn">
-                <span></span> Kinh nghiệm
-              </button>
-              <button type="button" className="filter-btn">
-                <span></span> Học vấn
-              </button>
-            </div>
           </form>
         </div>
       </section>
