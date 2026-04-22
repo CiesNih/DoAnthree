@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllJobs } from '../services/jobService';
-import Sidebar from '../components/Sidebar';
-import '../styles/Home.css';
-import '../styles/JobList.css';
+import { getAllJobs } from '../../services/jobService';
+import Sidebar from '../../components/Sidebar';
+import '../../styles/Home.css';
+import '../../styles/JobList.css';
 
 export default function JobListPage() {
   const navigate = useNavigate();

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllJobs } from '../services/jobService';
-import Sidebar from '../components/Sidebar';
-import '../styles/Home.css';
+import CompaniesSection from '../../components/CompaniesSection';
+import { getAllJobs } from '../../services/jobService';
+import Sidebar from '../../components/Sidebar';
+import '../../styles/Home.css';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -278,7 +279,6 @@ export default function Home() {
           </aside>
         </div>
       </section>
-
       {/* Featured employers */}
       <section className="featured-employers">
         <div className="fe-container">

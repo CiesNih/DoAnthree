@@ -8,4 +8,10 @@ export const getAllCompanies = async () => {
   return res.data;
 };
 
-export default { getAllCompanies };
+export const getCompanyById = async (id) => {
+  const res = await api.get(`/CongTy/${id}`);
+  return res.data;
+};
+
+
+export default { getAllCompanies, getCompanyById };

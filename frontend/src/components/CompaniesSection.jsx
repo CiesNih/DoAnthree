@@ -23,7 +23,6 @@ export default function CompaniesSection({ jobs = [] }) {
     return () => { mounted = false; };
   }, []);
 
-  // count jobs per company by matching company name
   const counts = useMemo(() => {
     const m = {};
     for (const j of jobs || []) {

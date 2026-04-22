@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/JobDetail.css';
+import '../../styles/JobDetail.css';
 
 export default function JobDetail() {
   const { id } = useParams(); 

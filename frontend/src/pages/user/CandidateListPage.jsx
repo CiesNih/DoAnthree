@@ -1,7 +1,7 @@
 // src/pages/CandidateListPage.jsx
 import { useEffect, useState } from 'react';
-import { getAllCandidates, deleteCandidate } from '../services/candidateService';
-import '../styles/CandidateListPage.css';
+import { getAllCandidates, deleteCandidate } from '../../services/candidateService';
+import '../../styles/CandidateListPage.css';
 
 export default function CandidateListPage() {
   const [candidates, setCandidates] = useState([]);

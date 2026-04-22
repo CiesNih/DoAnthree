@@ -1,29 +1,256 @@
-.companies-section { padding: 20px 0; }
-.companies-header h2 { margin: 0 0 6px; color: #0b57c9; }
-.companies-sub { margin: 0 0 16px; color: #555; }
+/* =========================================
+   COMPANIES PAGE 
+========================================= */
+.cp-wrapper {
+  background-color: #f8f9fa; /* Nền xám nhạt toàn trang giống ảnh */
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
 
-.companies-grid {
+.cp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* 1. Hero Section */
+.cp-hero {
+  background: linear-gradient(to right, #eef7ff, #f8fcff); /* Gradient xanh siêu nhạt */
+  padding: 40px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.cp-hero h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.cp-search-box {
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.cp-search-box input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+}
+
+.cp-search-box input:focus {
+  border-color: #0b5ed7;
+}
+
+.cp-btn-search {
+  background-color: #0b5ed7; /* Màu xanh đậm y hệt JobsGO */
+  color: white;
+  border: none;
+  padding: 0 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cp-btn-search:hover {
+  background-color: #094eb3;
+}
+
+/* 2. Breadcrumb & Title */
+.cp-breadcrumb {
+  margin: 20px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.cp-breadcrumb span {
+  color: #333;
+}
+
+.cp-main-title {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* 3. Categories */
+.cp-categories {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu màn hình nhỏ */
+  padding-bottom: 10px;
+}
+
+.cp-cat-card {
+  background: white;
+  border: 1px solid #eee;
+  padding: 15px 20px;
+  border-radius: 8px;
+  min-width: 180px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cp-cat-card:hover {
+  border-color: #0b5ed7;
+  box-shadow: 0 2px 8px rgba(11, 94, 215, 0.1);
+}
+
+.cp-cat-title {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.cp-cat-sub {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 4. Count Title */
+.cp-count-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* 5. Company Grid & Card */
+.cp-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
-.company-card {
-  background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-}
-.company-logo { width:64px; height:64px; flex:0 0 64px; display:flex; align-items:center; justify-content:center; background:#f6f8fb; border-radius:8px; overflow:hidden; }
-.company-logo img { width:100%; height:100%; object-fit:contain; }
-.company-logo-placeholder { font-size:20px; color:#0b57c9; font-weight:700; }
 
-.company-body { flex:1; min-width:0; }
-.company-name { margin:0 0 6px; font-size:15px; color:#222; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.company-meta .jobs-count { display:inline-block; background:#e8f0ff; color:#1d57d8; padding:6px 8px; border-radius:6px; font-weight:600; font-size:13px; }
-
-@media (max-width: 1024px) {
-  .companies-grid { grid-template-columns: repeat(3, 1fr); }
+.cp-card {
+  background: white;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.2s;
 }
-@media (max-width: 768px) {
-  .companies-grid { grid-template-columns: repeat(2, 1fr); }
-  .company-card { padding:10px; }
-  .company-logo { width:56px; height:56px; }
+
+.cp-card:hover {
+  border-color: #ccc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.cp-card-top {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cp-logo {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cp-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: white;
+}
+
+.cp-info {
+  flex: 1;
+}
+
+.cp-name {
+  font-size: 15px;
+  color: #333;
+  margin: 0 0 5px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cp-industry {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.cp-card-bottom {
+  margin-top: auto;
+}
+
+.cp-badge {
+  display: inline-block;
+  background-color: #f0f7ff;
+  color: #0b5ed7;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+/* 6. Pagination */
+.cp-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.cp-pagination button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #666;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cp-pagination button:hover:not(:disabled) {
+  border-color: #0b5ed7;
+  color: #0b5ed7;
+}
+
+.cp-pagination button.active {
+  background-color: #0b5ed7;
+  color: white;
+  border-color: #0b5ed7;
+}
+
+.cp-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .cp-grid { grid-template-columns: 1fr; }
+  .cp-search-box { flex-direction: column; }
+  .cp-btn-search { padding: 12px; }
 }
