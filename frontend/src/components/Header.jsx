@@ -74,7 +74,7 @@ export default function Header({ onOpenAuth }) {
             onMouseEnter={() => setShowToolsMenu(true)}
             onMouseLeave={() => setShowToolsMenu(false)}
           >
-            <Link to="/tools" className="nav-link">Công cụ <span>▼</span></Link>
+            <span className="nav-link">Công cụ <span>▼</span></span>
             {showToolsMenu && (
               <div className="mega-menu tools-menu">
                 <div className="mega-menu-container single-col">
@@ -126,9 +126,9 @@ export default function Header({ onOpenAuth }) {
                   ) : (
                     <>
                       <Link to="/profile" className="menu-item" onClick={() => setShowUserMenu(false)}>👤 Quản lý hồ sơ</Link>
-                      <Link to="/applied-jobs" className="menu-item" onClick={() => setShowUserMenu(false)}>📝 Việc làm đã ứng tuyển</Link>
-                      <Link to="/saved-jobs" className="menu-item" onClick={() => setShowUserMenu(false)}>💾 Việc làm đã lưu</Link>
-                      <Link to="/notifications" className="menu-item" onClick={() => setShowUserMenu(false)}>🔔 Thông báo</Link>
+                      <Link to="/applied-jobs" className="menu-item" onClick={() => setShowUserMenu(false)}> Việc làm đã ứng tuyển</Link>
+                      <Link to="/saved-jobs" className="menu-item" onClick={() => setShowUserMenu(false)}> Việc làm đã lưu</Link>
+                      <Link to="/notifications" className="menu-item" onClick={() => setShowUserMenu(false)}> Thông báo</Link>
                       <hr className="menu-divider" />
                       <button className="menu-item logout-item" onClick={handleLogout}>Đăng xuất</button>
                     </>

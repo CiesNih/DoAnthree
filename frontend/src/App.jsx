@@ -29,6 +29,8 @@ import ManageUsers from './pages/admin/ManageUsers';
 import ManageEmployers from './pages/admin/ManageEmployers';
 import ManageJobCategories from './pages/admin/ManageJobCategories';
 import ManageJobs from './pages/admin/ManageJobs';
+import Reports from './pages/admin/Reports';
+import Settings from './pages/admin/Settings';
 
 
 // 4. Import Pages - Employer (Nhà Tuyển Dụng)
@@ -45,6 +47,8 @@ import TestAPI from './pages/TestAPI';
 // 3. Import Components
 import ScrollToTop from './components/ScrollToTop';
 import AuthModal from './components/AuthModal';
+import ToastContainer from './components/Toast';
+import ErrorBoundary from './components/ErrorBoundary';
 import './styles/App.css';
 
 
@@ -73,6 +77,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
+      <ToastContainer />
       
       <Routes>
         {/* =========================================
@@ -106,6 +111,8 @@ function AppContent() {
           <Route path="employers" element={<ManageEmployers />} />
           <Route path="categories" element={<ManageJobCategories />} />
           <Route path="jobs" element={<ManageJobs />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/* =========================================
@@ -137,8 +144,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <AppContent />
+      </Router>
+    </ErrorBoundary>
   );
 }

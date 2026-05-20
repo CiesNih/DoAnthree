@@ -6,12 +6,35 @@ const mockIndustries = [
   { maNganh: 1, tenNganh: 'IT - Phần mềm', ngayTao: '2026-01-15' },
   { maNganh: 2, tenNganh: 'Marketing / Truyền thông', ngayTao: '2026-01-16' },
   { maNganh: 3, tenNganh: 'Kế toán / Kiểm toán', ngayTao: '2026-02-01' },
+  { maNganh: 4, tenNganh: 'Kinh doanh / Bán hàng', ngayTao: '2026-02-05' },
+  { maNganh: 5, tenNganh: 'Nhân sự / Tuyển dụng', ngayTao: '2026-02-10' },
+  { maNganh: 6, tenNganh: 'Thiết kế / Sáng tạo', ngayTao: '2026-02-15' },
 ];
 
 const mockSkills = [
   { maKyNang: 101, tenKyNang: 'ReactJS', ngayTao: '2026-01-20' },
   { maKyNang: 102, tenKyNang: 'C# / .NET', ngayTao: '2026-01-20' },
   { maKyNang: 103, tenKyNang: 'Figma', ngayTao: '2026-03-10' },
+  { maKyNang: 104, tenKyNang: 'Python', ngayTao: '2026-03-12' },
+  { maKyNang: 105, tenKyNang: 'Java', ngayTao: '2026-03-15' },
+  { maKyNang: 106, tenKyNang: 'SQL', ngayTao: '2026-03-18' },
+];
+
+const mockEducation = [
+  { maHocVan: 201, tenHocVan: 'Trung học phổ thông', ngayTao: '2026-01-10' },
+  { maHocVan: 202, tenHocVan: 'Trung cấp', ngayTao: '2026-01-10' },
+  { maHocVan: 203, tenHocVan: 'Cao đẳng', ngayTao: '2026-01-10' },
+  { maHocVan: 204, tenHocVan: 'Đại học', ngayTao: '2026-01-10' },
+  { maHocVan: 205, tenHocVan: 'Thạc sĩ', ngayTao: '2026-01-10' },
+  { maHocVan: 206, tenHocVan: 'Tiến sĩ', ngayTao: '2026-01-10' },
+];
+
+const mockJobTypes = [
+  { maLoaiHinh: 301, tenLoaiHinh: 'Toàn thời gian', ngayTao: '2026-01-05' },
+  { maLoaiHinh: 302, tenLoaiHinh: 'Bán thời gian', ngayTao: '2026-01-05' },
+  { maLoaiHinh: 303, tenLoaiHinh: 'Thực tập', ngayTao: '2026-01-05' },
+  { maLoaiHinh: 304, tenLoaiHinh: 'Remote', ngayTao: '2026-01-05' },
+  { maLoaiHinh: 305, tenLoaiHinh: 'Freelance', ngayTao: '2026-01-05' },
 ];
 
 export default function ManageJobCategories() {
@@ -21,6 +44,8 @@ export default function ManageJobCategories() {
   // States cho từng danh mục
   const [industries] = useState(mockIndustries);
   const [skills] = useState(mockSkills);
+  const [education] = useState(mockEducation);
+  const [jobTypes] = useState(mockJobTypes);
 
   // States cho Modal Thêm/Sửa
   const [showModal, setShowModal] = useState(false);
@@ -92,10 +117,10 @@ export default function ManageJobCategories() {
 
   // Định nghĩa các thẻ Tab
   const tabs = [
-    { id: 'industry', title: 'Ngành nghề' },
-    { id: 'skill', title: 'Kỹ năng' },
-    { id: 'location', title: 'Học vấn' }, 
-    { id: 'type', title: 'Loại hình' },
+    { id: 'industry', title: 'Ngành nghề', icon: '💼' },
+    { id: 'skill', title: 'Kỹ năng', icon: '⚡' },
+    { id: 'education', title: 'Học vấn', icon: '🎓' }, 
+    { id: 'type', title: 'Loại hình', icon: '📋' },
   ];
 
   return (
@@ -111,7 +136,7 @@ export default function ManageJobCategories() {
               className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
-              {tab.title}
+              {tab.icon} {tab.title}
             </button>
           ))}
         </div>
@@ -153,6 +178,28 @@ export default function ManageJobCategories() {
                 <tr key={item.maKyNang}>
                   <td>{index + 1}</td>
                   <td className="fw-bold">{item.tenKyNang}</td>
+                  <td>{new Date(item.ngayTao).toLocaleDateString()}</td>
+                  <td className="action-cell">
+                    <button className="text-btn edit-btn" onClick={() => handleOpenEdit(item)}>Sửa</button>
+                    <button className="text-btn delete-btn" onClick={() => handleDelete(item)}>Xóa</button>
+                  </td>
+                </tr>
+              ))}
+              {activeTab === 'education' && education.map((item, index) => (
+                <tr key={item.maHocVan}>
+                  <td>{index + 1}</td>
+                  <td className="fw-bold">{item.tenHocVan}</td>
+                  <td>{new Date(item.ngayTao).toLocaleDateString()}</td>
+                  <td className="action-cell">
+                    <button className="text-btn edit-btn" onClick={() => handleOpenEdit(item)}>Sửa</button>
+                    <button className="text-btn delete-btn" onClick={() => handleDelete(item)}>Xóa</button>
+                  </td>
+                </tr>
+              ))}
+              {activeTab === 'type' && jobTypes.map((item, index) => (
+                <tr key={item.maLoaiHinh}>
+                  <td>{index + 1}</td>
+                  <td className="fw-bold">{item.tenLoaiHinh}</td>
                   <td>{new Date(item.ngayTao).toLocaleDateString()}</td>
                   <td className="action-cell">
                     <button className="text-btn edit-btn" onClick={() => handleOpenEdit(item)}>Sửa</button>

@@ -204,7 +204,7 @@ export default function Home() {
             {/* Empty State */}
             {!loading && filteredJobs.length === 0 && (
               <div className="empty-state">
-                <p>😕 Không tìm thấy việc làm phù hợp</p>
+                <p> Không tìm thấy việc làm phù hợp</p>
               </div>
             )}
 
@@ -345,8 +345,8 @@ export default function Home() {
                 key={ind.key}
                 className="pi-card"
                 onClick={() => {
-                  setKeyword(ind.name); // cập nhật search từ khoá nếu muốn
-                  filterJobs(); // chạy filter hiện có
+                  setKeyword(ind.name); 
+                  filterJobs(); 
                   window.scrollTo({ top: 300, behavior: 'smooth' });
                 }}
                 style={{ background: ind.color }}

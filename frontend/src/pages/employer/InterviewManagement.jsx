@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDonUngTuyen } from '../../services/employerService';
+// import { getDonUngTuyen } from '../../services/employerService'; // Tạm thời comment vì dùng mock data
 import '../../styles/admin.css';
 
 const InterviewManagement = () => {
@@ -15,21 +15,83 @@ const InterviewManagement = () => {
   });
 
   useEffect(() => {
-    const storedMaCongTy = localStorage.getItem('maCongTy');
-    if (storedMaCongTy) {
-      setMaCongTy(storedMaCongTy);
-      fetchInterviews(storedMaCongTy);
-    } else {
-      setLoading(false);
-      alert('Vui lòng cấu hình Mã Công Ty trong Dashboard!');
+    // Thử lấy maCongTy từ nhiều nguồn
+    let congTyId = localStorage.getItem('maCongTy');
+    
+    // Nếu không có, thử lấy từ authUser
+    if (!congTyId) {
+      const savedUser = localStorage.getItem('authUser') || sessionStorage.getItem('authUser');
+      if (savedUser) {
+        const user = JSON.parse(savedUser);
+        congTyId = user.maCongTy || user.companyId || user.id;
+      }
     }
+    
+    // Nếu vẫn không có, dùng GUID của Công ty ABC
+    if (!congTyId) {
+      congTyId = '432C7344-F5A4-4D43-B44C-2958E8DAA2798';
+      console.warn('Không tìm thấy maCongTy, sử dụng GUID của Công ty ABC');
+      localStorage.setItem('maCongTy', congTyId);
+    }
+    
+    setMaCongTy(congTyId);
+    fetchInterviews(congTyId);
   }, []);
 
   const fetchInterviews = async (congTyId, filterParams = {}) => {
     try {
       setLoading(true);
       
-      // Lấy tất cả đơn ứng tuyển có trạng thái PhongVan
+      // TODO: Tạm thời dùng mock data vì API chưa có
+      // Sau này sẽ gọi API thật: getDonUngTuyen({ trangThai: 'PhongVan', ...filterParams })
+      
+      // Mock data cho demo
+      const mockInterviews = [
+        {
+          maDonUngTuyen: '1',
+          hoTen: 'Nguyễn Văn A',
+          tenViecLam: 'Frontend Developer',
+          email: 'nguyenvana@gmail.com',
+          soDienThoai: '0901234567',
+          thoiGianPhongVan: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 ngày sau
+          daCoLichPhongVan: true,
+          soNamKinhNghiem: '2 năm',
+          ngayNop: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+          duongDanLuuTru: 'https://example.com/cv1.pdf',
+          maViecLam: 'job1'
+        },
+        {
+          maDonUngTuyen: '2',
+          hoTen: 'Trần Thị B',
+          tenViecLam: 'Backend Developer',
+          email: 'tranthib@gmail.com',
+          soDienThoai: '0907654321',
+          thoiGianPhongVan: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(), // 5 giờ sau (sắp tới)
+          daCoLichPhongVan: true,
+          soNamKinhNghiem: '3 năm',
+          ngayNop: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+          duongDanLuuTru: 'https://example.com/cv2.pdf',
+          maViecLam: 'job2'
+        },
+        {
+          maDonUngTuyen: '3',
+          hoTen: 'Lê Văn C',
+          tenViecLam: 'Full Stack Developer',
+          email: 'levanc@gmail.com',
+          soDienThoai: '0909876543',
+          thoiGianPhongVan: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 ngày trước (đã qua)
+          daCoLichPhongVan: true,
+          soNamKinhNghiem: '5 năm',
+          ngayNop: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          duongDanLuuTru: 'https://example.com/cv3.pdf',
+          maViecLam: 'job3'
+        }
+      ];
+      
+      setInterviews(mockInterviews);
+      
+      /* 
+      // Code thật khi có API:
       const response = await getDonUngTuyen({
         trangThai: 'PhongVan',
         ...filterParams,
@@ -38,10 +100,10 @@ const InterviewManagement = () => {
       });
 
       if (response.success) {
-        // Filter những đơn có lịch phỏng vấn
         const interviewList = response.data.items.filter(item => item.daCoLichPhongVan);
         setInterviews(interviewList);
       }
+      */
     } catch (error) {
       console.error('Lỗi:', error);
       alert('Không thể tải danh sách lịch phỏng vấn!');

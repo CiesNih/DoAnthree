@@ -42,6 +42,7 @@ function AuthModalContent({ onSuccess }) {
         setLoading(false);
         onSuccess();
       }, 500);
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError('Đã có lỗi xảy ra!');
       setLoading(false);
@@ -131,6 +132,7 @@ function AuthModalContent({ onSuccess }) {
 }
 
 export default function CreateCV() {
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);

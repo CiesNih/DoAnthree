@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://localhost:7272/api/ntd';
+const API_BASE_URL = import.meta.env.VITE_API_ADMIN || 'https://localhost:7272';
+const API_NTD_URL = `${API_BASE_URL}/api/ntd`;
 
 // Lấy token từ localStorage
 const getAuthHeader = () => {
@@ -15,7 +16,7 @@ const getAuthHeader = () => {
 // Lấy danh sách việc làm của công ty
 export const getViecLamCuaCongTy = async (maCongTy, params = {}) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/vieclam`, {
+    const response = await axios.get(`${API_NTD_URL}/vieclam`, {
       params: { maCongTy, ...params },
       headers: getAuthHeader()
     });
@@ -28,7 +29,7 @@ export const getViecLamCuaCongTy = async (maCongTy, params = {}) => {
 // Tạo việc làm mới
 export const taoViecLam = async (data) => {
   try {
-    const response = await axios.post('https://localhost:7272/api/ViecLam', data, {
+    const response = await axios.post(`${API_BASE_URL}/api/ViecLam`, data, {
       headers: getAuthHeader()
     });
     return response.data;
@@ -40,7 +41,7 @@ export const taoViecLam = async (data) => {
 // Cập nhật việc làm
 export const capNhatViecLam = async (id, data) => {
   try {
-    const response = await axios.put(`https://localhost:7272/api/ViecLam/${id}`, data, {
+    const response = await axios.put(`${API_BASE_URL}/api/ViecLam/${id}`, data, {
       headers: getAuthHeader()
     });
     return response.data;
@@ -52,7 +53,7 @@ export const capNhatViecLam = async (id, data) => {
 // Xóa việc làm
 export const xoaViecLam = async (id) => {
   try {
-    const response = await axios.delete(`http://localhost:7272/api/ViecLam/${id}`, {
+    const response = await axios.delete(`${API_BASE_URL}/api/ViecLam/${id}`, {
       headers: getAuthHeader()
     });
     return response.data;
@@ -68,7 +69,7 @@ export const xoaViecLam = async (id) => {
 // Lấy danh sách đơn ứng tuyển
 export const getDonUngTuyen = async (params = {}) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/don-ung-tuyen`, {
+    const response = await axios.get(`${API_NTD_URL}/don-ung-tuyen`, {
       params,
       headers: getAuthHeader()
     });
@@ -82,7 +83,7 @@ export const getDonUngTuyen = async (params = {}) => {
 export const capNhatTrangThaiDon = async (id, data) => {
   try {
     const response = await axios.patch(
-      `${API_BASE_URL}/don-ung-tuyen/${id}/trang-thai`,
+      `${API_NTD_URL}/don-ung-tuyen/${id}/trang-thai`,
       data,
       { headers: getAuthHeader() }
     );
@@ -99,7 +100,7 @@ export const capNhatTrangThaiDon = async (id, data) => {
 // Tạo lịch phỏng vấn
 export const taoLichPhongVan = async (data) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/phong-van`, data, {
+    const response = await axios.post(`${API_NTD_URL}/phong-van`, data, {
       headers: getAuthHeader()
     });
     return response.data;
@@ -111,7 +112,7 @@ export const taoLichPhongVan = async (data) => {
 // Lấy chi tiết lịch phỏng vấn
 export const getChiTietPhongVan = async (id) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/phong-van/${id}`, {
+    const response = await axios.get(`${API_NTD_URL}/phong-van/${id}`, {
       headers: getAuthHeader()
     });
     return response.data;
@@ -127,7 +128,7 @@ export const getChiTietPhongVan = async (id) => {
 // Lấy thống kê
 export const getThongKe = async (maCongTy) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/thong-ke`, {
+    const response = await axios.get(`${API_NTD_URL}/thong-ke`, {
       params: { maCongTy },
       headers: getAuthHeader()
     });
@@ -144,19 +145,35 @@ export const getThongKe = async (maCongTy) => {
 // Lấy thông tin công ty
 export const getThongTinCongTy = async (id) => {
   try {
-    const response = await axios.get(`https://localhost:7272/api/CongTy/${id}`, {
+    const response = await axios.get(`${API_BASE_URL}/api/CongTy/${id}`, {
       headers: getAuthHeader()
     });
-    return response.data;
+    
+    // API trả về trực tiếp object CongTy, không có wrapper success/data
+    // Nên cần wrap lại để frontend xử lý đồng nhất
+    return {
+      success: true,
+      data: {
+        tenCongTy: response.data.tenCongTy,
+        slug: response.data.slug,
+        website: response.data.website,
+        moTa: response.data.moTa,
+        logo: response.data.logo
+      }
+    };
   } catch (error) {
-    throw error.response?.data || error.message;
+    console.error('API Error:', error.response?.data || error.message);
+    return {
+      success: false,
+      message: error.response?.data?.message || error.message || 'Lỗi không xác định'
+    };
   }
 };
 
 // Cập nhật thông tin công ty
 export const capNhatCongTy = async (id, data) => {
   try {
-    const response = await axios.put(`http://localhost:7272/api/CongTy/${id}`, data, {
+    const response = await axios.put(`${API_BASE_URL}/api/CongTy/${id}`, data, {
       headers: getAuthHeader()
     });
     return response.data;

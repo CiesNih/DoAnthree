@@ -139,7 +139,7 @@ export default function SalaryCalculator() {
       <div className="salary-container">
         <main className="salary-main">
           <div className="salary-header">
-            <h1>💰 Máy tính Lương GROSS - NET</h1>
+            <h1>Máy tính Lương GROSS - NET</h1>
             <p>Tính toán lương thực lĩnh chính xác theo quy định mới nhất</p>
           </div>
 
@@ -147,7 +147,6 @@ export default function SalaryCalculator() {
             {/* Currency Selection */}
             <div className="control-group">
               <label className="control-label">
-                <span className="label-icon">💱</span>
                 Đơn vị tiền tệ
               </label>
               <div className="radio-group">
@@ -173,7 +172,6 @@ export default function SalaryCalculator() {
             {/* Mode Selection */}
             <div className="control-group">
               <label className="control-label">
-                <span className="label-icon">🔄</span>
                 Chế độ tính
               </label>
               <div className="mode-buttons">
@@ -181,14 +179,12 @@ export default function SalaryCalculator() {
                   className={`mode-btn ${mode === 'gross' ? 'active' : ''}`} 
                   onClick={() => setMode('gross')}
                 >
-                  <span className="mode-icon">→</span>
                   GROSS → NET
                 </button>
                 <button 
                   className={`mode-btn ${mode === 'net' ? 'active' : ''}`} 
                   onClick={() => setMode('net')}
                 >
-                  <span className="mode-icon">←</span>
                   NET → GROSS
                 </button>
               </div>
@@ -197,7 +193,6 @@ export default function SalaryCalculator() {
             {/* Amount Input */}
             <div className="control-group">
               <label className="control-label">
-                <span className="label-icon">💵</span>
                 {mode === 'gross' ? 'Lương Gross (tháng)' : 'Lương Net (tháng)'}
               </label>
               <div className="input-wrapper">
@@ -216,7 +211,6 @@ export default function SalaryCalculator() {
             <div className="control-row">
               <div className="control-group half">
                 <label className="control-label">
-                  <span className="label-icon">👨‍👩‍👧‍👦</span>
                   Người phụ thuộc
                 </label>
                 <input 
@@ -231,7 +225,6 @@ export default function SalaryCalculator() {
 
               <div className="control-group half">
                 <label className="control-label">
-                  <span className="label-icon">📍</span>
                   Vùng
                 </label>
                 <select 
@@ -250,7 +243,6 @@ export default function SalaryCalculator() {
             {/* Tax Method */}
             <div className="control-group">
               <label className="control-label">
-                <span className="label-icon">📊</span>
                 Phương pháp tính thuế
               </label>
               <select 
@@ -266,10 +258,10 @@ export default function SalaryCalculator() {
             {/* Action Buttons */}
             <div className="action-buttons">
               <button onClick={handleCalculate} className="btn btn-primary">
-                <span>🧮</span> Tính toán
+                Tính toán
               </button>
               <button onClick={handleReset} className="btn btn-secondary">
-                <span>🔄</span> Làm mới
+                Làm mới
               </button>
             </div>
           </div>
@@ -277,13 +269,11 @@ export default function SalaryCalculator() {
           {/* Results */}
           <div className="result-block">
             <h3 className="result-title">
-              <span className="result-icon">📈</span>
               Kết quả tính toán
             </h3>
             
             {!result && (
               <div className="result-empty">
-                <div className="empty-icon">📊</div>
                 <p>Nhập thông tin và nhấn "Tính toán" để xem kết quả chi tiết</p>
               </div>
             )}
@@ -303,7 +293,6 @@ export default function SalaryCalculator() {
                   
                   <div className="result-item deduction">
                     <span className="result-label">
-                      <span className="deduction-icon">−</span>
                       Bảo hiểm (BHXH 8% + BHYT 1.5% + BHTN 1%)
                     </span>
                     <span className="result-value negative">{formatValue(result.insurance, currency)}</span>
@@ -311,7 +300,6 @@ export default function SalaryCalculator() {
 
                   <div className="result-item info">
                     <span className="result-label">
-                      <span className="info-icon">→</span>
                       Thu nhập tính thuế
                     </span>
                     <span className="result-value">{formatValue(result.taxableMonthly, currency)}</span>
@@ -319,7 +307,6 @@ export default function SalaryCalculator() {
 
                   <div className="result-item deduction">
                     <span className="result-label">
-                      <span className="deduction-icon">−</span>
                       Thuế TNCN
                     </span>
                     <span className="result-value negative">{formatValue(result.taxMonthly, currency)}</span>

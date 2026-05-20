@@ -17,14 +17,28 @@ const CompanyProfile = () => {
   const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
-    const storedMaCongTy = localStorage.getItem('maCongTy');
-    if (storedMaCongTy) {
-      setMaCongTy(storedMaCongTy);
-      fetchCompanyInfo(storedMaCongTy);
-    } else {
-      setLoading(false);
-      alert('Vui lòng cấu hình Mã Công Ty trong Dashboard!');
+    // Thử lấy maCongTy từ nhiều nguồn
+    let congTyId = localStorage.getItem('maCongTy');
+    
+    // Nếu không có, thử lấy từ authUser
+    if (!congTyId) {
+      const savedUser = localStorage.getItem('authUser') || sessionStorage.getItem('authUser');
+      if (savedUser) {
+        const user = JSON.parse(savedUser);
+        congTyId = user.maCongTy || user.companyId || user.id;
+      }
     }
+    
+    // Nếu vẫn không có, dùng GUID của Công ty ABC (từ database)
+    if (!congTyId) {
+      congTyId = '432C7344-F5A4-4D43-B44C-2958E8DAA2798'; // GUID của Công ty ABC
+      console.warn('Không tìm thấy maCongTy, sử dụng GUID của Công ty ABC');
+      // Lưu vào localStorage để lần sau không cần hardcode
+      localStorage.setItem('maCongTy', congTyId);
+    }
+    
+    setMaCongTy(congTyId);
+    fetchCompanyInfo(congTyId);
   }, []);
 
   useEffect(() => {
@@ -40,7 +54,10 @@ const CompanyProfile = () => {
   const fetchCompanyInfo = async (congTyId) => {
     try {
       setLoading(true);
+      console.log('Fetching company info for ID:', congTyId);
+      
       const response = await getThongTinCongTy(congTyId);
+      console.log('API Response:', response);
       
       if (response.success) {
         const data = {
@@ -53,11 +70,11 @@ const CompanyProfile = () => {
         setFormData(data);
         setOriginalData(data);
       } else {
-        alert('Không thể tải thông tin công ty!');
+        alert('Không thể tải thông tin công ty: ' + (response.message || 'Lỗi không xác định'));
       }
     } catch (error) {
-      console.error('Lỗi:', error);
-      alert('Không thể tải thông tin công ty!');
+      console.error('Lỗi chi tiết:', error);
+      alert('Không thể tải thông tin công ty! Lỗi: ' + (error.message || JSON.stringify(error)));
     } finally {
       setLoading(false);
     }
@@ -178,12 +195,14 @@ const CompanyProfile = () => {
                   required
                   placeholder="cong-ty-abc"
                   style={{ flex: 1 }}
+                  aria-label="Slug công ty"
                 />
                 <button
                   type="button"
                   className="btn-secondary"
                   onClick={generateSlug}
                   title="Tự động tạo slug từ tên công ty"
+                  aria-label="Tạo slug tự động"
                 >
                   🔄 Tạo tự động
                 </button>
